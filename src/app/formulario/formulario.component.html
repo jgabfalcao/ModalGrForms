@@ -1,0 +1,42 @@
+<h2>Cadastro</h2>
+<form (ngSubmit)="enviarFormulario()" #formulario="ngForm">
+  <label>Nome:</label>
+  <input type="text" [(ngModel)]="form.nome" name="nome" required />
+
+  <label>CPF:</label>
+  <input type="text" [(ngModel)]="form.cpf" name="cpf" required />
+
+  <label>Data de Nascimento:</label>
+  <input
+    type="date"
+    [(ngModel)]="form.dataNascimento"
+    name="dataNascimento"
+    required
+  />
+
+  <label>E-mail:</label>
+  <input type="email" [(ngModel)]="form.email" name="email" required />
+
+  <label>CEP:</label>
+  <input
+    type="text"
+    [(ngModel)]="form.cep"
+    name="cep"
+    required
+    (blur)="buscarCep()"
+  />
+
+  <label>Logradouro:</label>
+  <input type="text" [(ngModel)]="form.logradouro" name="logradouro" required />
+
+  <label>Bairro:</label>
+  <input type="text" [(ngModel)]="form.bairro" name="bairro" required />
+
+  <label>Cidade:</label>
+  <input type="text" [(ngModel)]="form.cidade" name="cidade" required />
+
+  <label>Estado:</label>
+  <input type="text" [(ngModel)]="form.estado" name="estado" required />
+
+  <button type="submit" [disabled]="!formulario.valid">Enviar</button>
+</form>
