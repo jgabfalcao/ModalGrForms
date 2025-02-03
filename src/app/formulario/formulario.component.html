@@ -1,10 +1,24 @@
-<h2>Cadastro</h2>
+<h2>Cadastro de Pessoas - Modal GR</h2>
 <form (ngSubmit)="enviarFormulario()" #formulario="ngForm">
   <label>Nome:</label>
-  <input type="text" [(ngModel)]="form.nome" name="nome" required />
+  <input
+    type="text"
+    [(ngModel)]="form.nome"
+    name="nome"
+    required
+    pattern="[A-Za-zÀ-ÿ\s]+"
+    maxlength="150"
+  />
 
   <label>CPF:</label>
-  <input type="text" [(ngModel)]="form.cpf" name="cpf" required />
+  <input
+    type="text"
+    [(ngModel)]="form.cpf"
+    name="cpf"
+    required
+    maxlength="14"
+    (input)="validarCpf(); formatarCpf()"
+  />
 
   <label>Data de Nascimento:</label>
   <input
@@ -23,7 +37,8 @@
     [(ngModel)]="form.cep"
     name="cep"
     required
-    (blur)="buscarCep()"
+    (input)="buscarCep()"
+    maxlength="8"
   />
 
   <label>Logradouro:</label>
@@ -38,5 +53,5 @@
   <label>Estado:</label>
   <input type="text" [(ngModel)]="form.estado" name="estado" required />
 
-  <button type="submit" [disabled]="!formulario.valid">Enviar</button>
+  <button type="submit" [disabled]="!formulario.valid">Cadastrar</button>
 </form>
