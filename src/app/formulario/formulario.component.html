@@ -1,90 +1,105 @@
-<h2>Cadastro de Pessoas - Modal GR</h2>
-<form (ngSubmit)="enviarFormulario()" #formulario="ngForm">
-  <label>Nome:</label>
-  <input
-    type="text"
-    [(ngModel)]="form.nome"
-    name="nome"
-    required
-    pattern="[A-Za-zÀ-ÿ\s]+"
-    maxlength="150"
-  />
+<body>
+  <h2 class="Titulo">Cadastro de Pessoas - Modal GR</h2>
+  <form (ngSubmit)="enviarFormulario()" #formulario="ngForm">
+    <label>Nome:</label>
+    <input
+      type="text"
+      [(ngModel)]="form.nome"
+      name="nome"
+      required
+      pattern="[A-Za-zÀ-ÿ\s]+"
+      maxlength="150"
+    />
 
-  <label>CPF:</label>
-  <input
-    type="text"
-    [(ngModel)]="form.cpf"
-    name="cpf"
-    required
-    maxlength="14"
-    (input)="validarCpf(); formatarCpf()"
-  />
+    <label>CPF:</label>
+    <input
+      type="text"
+      [(ngModel)]="form.cpf"
+      name="cpf"
+      required
+      maxlength="14"
+      (input)="validarCpf(); formatarCpf()"
+    />
 
-  <label>Data de Nascimento:</label>
-  <input
-    type="date"
-    [(ngModel)]="form.dataNascimento"
-    name="dataNascimento"
-    required
-    (blur)="validarDataNascimento()"
-  />
+    <label>Data de Nascimento:</label>
+    <input
+      type="date"
+      [(ngModel)]="form.dataNascimento"
+      name="dataNascimento"
+      required
+      (blur)="validarDataNascimento()"
+    />
 
-  <label>E-mail:</label>
-  <input
-    type="email"
-    [(ngModel)]="form.email"
-    name="email"
-    required
-    maxlength="200"
-    placeholder="exemplo@dominio.com"
-    (blur)="validarEmail()"
-  />
+    <label>E-mail:</label>
+    <input
+      type="email"
+      [(ngModel)]="form.email"
+      name="email"
+      required
+      maxlength="200"
+      placeholder="exemplo@dominio.com"
+      (blur)="validarEmail()"
+    />
 
-  <label>CEP:</label>
-  <input
-    type="text"
-    [(ngModel)]="form.cep"
-    name="cep"
-    required
-    (input)="formatarCep(); buscarCep()"
-    maxlength="9"
-  />
+    <label>CEP:</label>
+    <input
+      type="text"
+      [(ngModel)]="form.cep"
+      name="cep"
+      required
+      (input)="formatarCep(); buscarCep()"
+      maxlength="9"
+    />
 
-  <label>Logradouro:</label>
-  <input
-    type="text"
-    [(ngModel)]="form.logradouro"
-    name="logradouro"
-    required
-    readonly
-  />
+    <label>Logradouro:</label>
+    <input
+      type="text"
+      [(ngModel)]="form.logradouro"
+      name="logradouro"
+      required
+      readonly
+    />
 
-  <label>Bairro:</label>
-  <input
-    type="text"
-    [(ngModel)]="form.bairro"
-    name="bairro"
-    required
-    readonly
-  />
+    <label>Bairro:</label>
+    <input
+      type="text"
+      [(ngModel)]="form.bairro"
+      name="bairro"
+      required
+      readonly
+    />
 
-  <label>Cidade:</label>
-  <input
-    type="text"
-    [(ngModel)]="form.cidade"
-    name="cidade"
-    required
-    readonly
-  />
+    <label>Cidade:</label>
+    <input
+      type="text"
+      [(ngModel)]="form.cidade"
+      name="cidade"
+      required
+      readonly
+    />
 
-  <label>Estado:</label>
-  <input
-    type="text"
-    [(ngModel)]="form.estado"
-    name="estado"
-    required
-    readonly
-  />
+    <label>Estado:</label>
+    <input
+      type="text"
+      [(ngModel)]="form.estado"
+      name="estado"
+      required
+      readonly
+    />
 
-  <button type="submit" [disabled]="!formulario.valid">Cadastrar</button>
-</form>
+    <button type="submit" [disabled]="!formulario.valid">Cadastrar</button>
+  </form>
+
+  <div *ngIf="exibirResultado" class="resultado">
+    <h3>Dados Cadastrados</h3>
+    <p><strong>Nome:</strong> {{ form.nome }}</p>
+    <p><strong>CPF:</strong> {{ form.cpf }}</p>
+    <p><strong>Idade:</strong> {{ form.idade }}</p>
+    <p><strong>E-mail:</strong> {{ form.email }}</p>
+    <p><strong>CEP:</strong> {{ form.cep }}</p>
+    <p><strong>Logradouro:</strong> {{ form.logradouro }}</p>
+    <p><strong>Bairro:</strong> {{ form.bairro }}</p>
+    <p><strong>Cidade:</strong> {{ form.cidade }}</p>
+    <p><strong>Estado:</strong> {{ form.estado }}</p>
+  </div>
+</body>
