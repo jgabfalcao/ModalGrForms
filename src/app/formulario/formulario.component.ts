@@ -45,9 +45,25 @@ export class FormularioComponent{
   exibirResultado: boolean = false;
 
   enviarFormulario(): void {
+    sessionStorage.setItem('formData', JSON.stringify(this.form));
+
     console.log('Dados do formulário preenchido: ', this.form);
     this.exibirResultado = true;
     alert('Formulário enviado com sucesso!');
+    this.carregarDadosDoStorage(); 
+
+  }
+
+  carregarDadosDoStorage(): any {
+    const dadosSalvos = sessionStorage.getItem('formData');
+    if (dadosSalvos) {
+      return JSON.parse(dadosSalvos);
+    }
+    return null;
+  }
+
+  ngOnInit() {
+    this.carregarDadosDoStorage();
   }
 
   formatarCpf(): void {
@@ -93,7 +109,7 @@ export class FormularioComponent{
     if (mesAtual < mesNascimento || (mesAtual === mesNascimento && dataAtual.getDate() < dataNascimento.getDate())) {
       idade--;
     }
-    
+
     this.form.idade = idade;
 }
   validarEmail(): void {
