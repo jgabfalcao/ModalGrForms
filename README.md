@@ -2,9 +2,9 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.5.
 
-# Tecnologias utilizadas
+# Technologies used
 
-## Front end
+## FrontEnd
 
 - AngularJS
 - HTML
@@ -21,7 +21,7 @@ ng serve
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-# Autor
+# Author
 
 João Gabriel Falcão dos Santos
 
