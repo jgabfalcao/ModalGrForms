@@ -65,6 +65,27 @@ export class FormularioComponent{
     
   }
 
+  validarDataNascimento(): void {
+    const dataNascimento = new Date(this.form.dataNascimento);
+    const dataAtual = new Date();
+
+    if (dataNascimento > dataAtual) {
+      alert('A data de nascimento não pode ser maior que a data atual!');
+      this.form.dataNascimento = '';
+    }
+  }
+
+  validarEmail(): void {
+    const email = this.form.email.trim();
+
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (!emailPattern.test(email)) {
+      alert('E-mail inválido! Insira um e-mail no formato correto (exemplo@dominio.com).');
+      this.form.email = '';
+    }
+  }
+
   buscarCep(): void {
     const cep = this.form.cep.replace(/\D/g, '');
   

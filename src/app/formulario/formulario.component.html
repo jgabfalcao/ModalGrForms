@@ -26,10 +26,19 @@
     [(ngModel)]="form.dataNascimento"
     name="dataNascimento"
     required
+    (blur)="validarDataNascimento()"
   />
 
   <label>E-mail:</label>
-  <input type="email" [(ngModel)]="form.email" name="email" required />
+  <input
+    type="email"
+    [(ngModel)]="form.email"
+    name="email"
+    required
+    maxlength="200"
+    placeholder="exemplo@dominio.com"
+    (blur)="validarEmail()"
+  />
 
   <label>CEP:</label>
   <input
