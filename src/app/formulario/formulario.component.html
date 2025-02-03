@@ -90,16 +90,19 @@
     <button type="submit" [disabled]="!formulario.valid">Cadastrar</button>
   </form>
 
-  <div *ngIf="exibirResultado" class="resultado">
-    <h3>Dados Cadastrados</h3>
-    <p><strong>Nome:</strong> {{ form.nome }}</p>
-    <p><strong>CPF:</strong> {{ form.cpf }}</p>
-    <p><strong>Idade:</strong> {{ form.idade }}</p>
-    <p><strong>E-mail:</strong> {{ form.email }}</p>
-    <p><strong>CEP:</strong> {{ form.cep }}</p>
-    <p><strong>Logradouro:</strong> {{ form.logradouro }}</p>
-    <p><strong>Bairro:</strong> {{ form.bairro }}</p>
-    <p><strong>Cidade:</strong> {{ form.cidade }}</p>
-    <p><strong>Estado:</strong> {{ form.estado }}</p>
+  <div class="resultado" *ngIf="exibirResultado">
+    <h3>Dados Enviados:</h3>
+    <div *ngIf="carregarDadosDoStorage() as dados">
+      <p><strong>Nome:</strong> {{ dados.nome }}</p>
+      <p><strong>CPF:</strong> {{ dados.cpf }}</p>
+      <p><strong>Data de Nascimento:</strong> {{ dados.dataNascimento }}</p>
+      <p><strong>Idade:</strong> {{ dados.idade }}</p>
+      <p><strong>Email:</strong> {{ dados.email }}</p>
+      <p><strong>CEP:</strong> {{ dados.cep }}</p>
+      <p><strong>Logradouro:</strong> {{ dados.logradouro }}</p>
+      <p><strong>Bairro:</strong> {{ dados.bairro }}</p>
+      <p><strong>Cidade:</strong> {{ dados.cidade }}</p>
+      <p><strong>Estado:</strong> {{ dados.estado }}</p>
+    </div>
   </div>
 </section>
