@@ -86,23 +86,47 @@ export class FormularioComponent{
     }
   }
 
+  formatarCep(): void {
+    let cepFormat = this.form.cep.replace(/\D/g, '');
+
+    if (cepFormat.length > 5) {
+      cepFormat = cepFormat.substring(0, 5) + '-' + cepFormat.substring(5, 8); // Aplica o formato 00000-000
+    }
+
+    this.form.cep = cepFormat;
+  }
+
   buscarCep(): void {
     const cep = this.form.cep.replace(/\D/g, '');
   
-    if (this.form.cep.length === 8 ) {
-      this.http.get<any>(`https://viacep.com.br/ws/${cep}/json/`).subscribe(dados => {
-        if (!dados.erro) {
-          this.form.logradouro = dados.logradouro;
-          this.form.bairro = dados.bairro;
-          this.form.cidade = dados.localidade;
-          this.form.estado = dados.uf;
-        } else {
-          alert('CEP não encontrado');
+    if (cep.length === 8) {
+      this.http.get<any>(`https://viacep.com.br/ws/${cep}/json/`).subscribe(
+        (dados) => {
+          if (!dados.erro) {
+            this.form.logradouro = dados.logradouro;
+            this.form.bairro = dados.bairro;
+            this.form.cidade = dados.localidade;
+            this.form.estado = dados.uf;
+          } else {
+            alert('CEP não encontrado');
+            this.limparEndereco();
+          }
+        },
+        (error) => {
+          alert('Erro ao buscar CEP. Verifique se digitou corretamente.');
+          this.limparEndereco();
         }
-      }, error => {
-        alert('Erro ao buscar CEP. Tente novamente. Digite apenas números');
-      });
+      );
+    } else {
+      this.limparEndereco();
     }
+  }
+
+  limparEndereco(): void {
+    this.form.logradouro = '';
+    this.form.bairro = '';
+    this.form.cidade = '';
+    this.form.estado = '';
   }
 
 }

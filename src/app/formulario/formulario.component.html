@@ -46,21 +46,45 @@
     [(ngModel)]="form.cep"
     name="cep"
     required
-    (input)="buscarCep()"
-    maxlength="8"
+    (input)="formatarCep(); buscarCep()"
+    maxlength="9"
   />
 
   <label>Logradouro:</label>
-  <input type="text" [(ngModel)]="form.logradouro" name="logradouro" required />
+  <input
+    type="text"
+    [(ngModel)]="form.logradouro"
+    name="logradouro"
+    required
+    readonly
+  />
 
   <label>Bairro:</label>
-  <input type="text" [(ngModel)]="form.bairro" name="bairro" required />
+  <input
+    type="text"
+    [(ngModel)]="form.bairro"
+    name="bairro"
+    required
+    readonly
+  />
 
   <label>Cidade:</label>
-  <input type="text" [(ngModel)]="form.cidade" name="cidade" required />
+  <input
+    type="text"
+    [(ngModel)]="form.cidade"
+    name="cidade"
+    required
+    readonly
+  />
 
   <label>Estado:</label>
-  <input type="text" [(ngModel)]="form.estado" name="estado" required />
+  <input
+    type="text"
+    [(ngModel)]="form.estado"
+    name="estado"
+    required
+    readonly
+  />
 
   <button type="submit" [disabled]="!formulario.valid">Cadastrar</button>
 </form>
