@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { cpf as cpfValidator } from 'cpf-cnpj-validator';
+import { CommonModule } from '@angular/common';
 
 
 interface Formulario{
@@ -14,11 +15,12 @@ interface Formulario{
   bairro: string;
   cidade: string;
   estado: string;
+  idade: number | null;
 }
 
 @Component({
   selector: 'app-formulario',
-  imports: [FormsModule, HttpClientModule],
+  imports: [FormsModule, HttpClientModule, CommonModule],
   templateUrl: './formulario.component.html',
   styleUrl: './formulario.component.css',
   standalone: true
@@ -34,13 +36,17 @@ export class FormularioComponent{
     logradouro: '',
     bairro: '',
     cidade: '',
-    estado: ''
+    estado: '',
+    idade: null
   };
 
   constructor(private http: HttpClient){}
 
-  enviarFormulario(): void{
+  exibirResultado: boolean = false;
+
+  enviarFormulario(): void {
     console.log('Dados do formulário preenchido: ', this.form);
+    this.exibirResultado = true;
     alert('Formulário enviado com sucesso!');
   }
 
@@ -72,9 +78,24 @@ export class FormularioComponent{
     if (dataNascimento > dataAtual) {
       alert('A data de nascimento não pode ser maior que a data atual!');
       this.form.dataNascimento = '';
+      this.form.idade = null;
+    } else {
+      this.calcularIdade(dataNascimento, dataAtual);
     }
   }
 
+  calcularIdade(dataNascimento: Date, dataAtual: Date): void {
+    let idade = dataAtual.getFullYear() - dataNascimento.getFullYear();
+    const mesAtual = dataAtual.getMonth();
+    const mesNascimento = dataNascimento.getMonth();
+
+    
+    if (mesAtual < mesNascimento || (mesAtual === mesNascimento && dataAtual.getDate() < dataNascimento.getDate())) {
+      idade--;
+    }
+    
+    this.form.idade = idade;
+}
   validarEmail(): void {
     const email = this.form.email.trim();
 
